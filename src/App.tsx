@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { TeacherContext } from "./context/Teacher";
+import { useContext } from "react";
+import Signup from "./Pages/Signup";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { TeacherProvider } from "./context/Teacher";
+import TeacherData from "./Pages/TeacherData";
+import { Provider } from "react-redux";
+import { store } from "./Store/store";
+import "./App.css";
 
 function App() {
+  const teacherContext = useContext(TeacherContext);
+  console.log("in the app", teacherContext?.state);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <Provider store={store}>
+        <BrowserRouter>
+          <TeacherProvider>
+            <Routes>
+              <Route path="/" element={<Signup />} />
+              <Route path="/app" element={<App />} />
+              <Route path="/teacherdata" element={<TeacherData />} />
+            </Routes>
+          </TeacherProvider>
+        </BrowserRouter>
+      </Provider>
     </div>
   );
 }
