@@ -7,6 +7,10 @@ import TeacherData from "./Pages/TeacherData";
 import { Provider } from "react-redux";
 import { store } from "./Store/store";
 import "./App.css";
+import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
+import TeacherRoutes from "./RoleRoutes/TeacherRole";
+import StudentRoutes from "./RoleRoutes/StudentRole";
+import StudentData from "./Pages/StudentData";
 
 function App() {
   const teacherContext = useContext(TeacherContext);
@@ -19,7 +23,26 @@ function App() {
             <Routes>
               <Route path="/" element={<Signup />} />
               <Route path="/app" element={<App />} />
-              <Route path="/teacherdata" element={<TeacherData />} />
+              <Route
+                path="/teacherdata"
+                element={
+                  <PrivateRoutes>
+                    <TeacherRoutes>
+                      <TeacherData />
+                    </TeacherRoutes>
+                  </PrivateRoutes>
+                }
+              />
+              <Route
+                path="/studentdata"
+                element={
+                  <PrivateRoutes>
+                    <StudentRoutes>
+                      <StudentData />
+                    </StudentRoutes>
+                  </PrivateRoutes>
+                }
+              />
             </Routes>
           </TeacherProvider>
         </BrowserRouter>
