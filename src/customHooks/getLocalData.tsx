@@ -1,3 +1,4 @@
-export const getRole = (key:string) => {
- return  localStorage.getItem(key)
+export const useGetRole = (key:string) => {
+ const data = localStorage.getItem(key)
+ return data 
 };

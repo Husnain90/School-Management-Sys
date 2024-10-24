@@ -2,21 +2,22 @@ import { Formik, Form, Field } from "formik";
 import PrimaryButton from "../components/PrimaryButton";
 import { signUpSchema } from "../Yup/SignUpSchema";
 import { TeacherContext } from "../context/Teacher";
-import { useContext,  } from "react";
-import {  useDispatch, useSelector } from "react-redux";
+import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setStudent } from "../Store/studentSlice";
 import { RootState } from "../Store/store";
 import { useStoreRole } from "../customHooks/storeTolocalstorage";
-
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
 const Signup = (props: Props) => {
   const teacherContext = useContext(TeacherContext);
-  const dispatch = useDispatch()
-  const selector = useSelector((state:RootState)=>state.student)
-  const storeRole = useStoreRole
-  
+  const dispatch = useDispatch();
+  const selector = useSelector((state: RootState) => state.student);
+  const storeRole = useStoreRole;
+  const navigate = useNavigate();
+
   return (
     <div className="flex items-center justify-center h-screen border-2 ">
       <div className="w-full max-w-md text-xl font-medium text-black border-2 border-blue-400 p-10 rounded-lg">
@@ -40,7 +41,8 @@ const Signup = (props: Props) => {
               teacherContext?.setPhoneNumber(parseInt(values.phoneNumber));
               teacherContext?.setSignUp(true);
               console.log("Context after submission", teacherContext?.state);
-              storeRole(values.role,"true")
+              storeRole("data", values.role + " " + "true");
+              navigate("/teacherdata");
             } else {
               const newStudent = {
                 firstName: values.firstName,
@@ -51,8 +53,8 @@ const Signup = (props: Props) => {
               };
               dispatch(setStudent(newStudent));
               console.log(selector);
-              storeRole(values.role, "true");
-             
+              storeRole("data", values.role + " " + "true");
+              navigate("/studentdata");
             }
           }}
         >

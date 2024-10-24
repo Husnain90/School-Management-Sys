@@ -6,10 +6,10 @@ type Props = {
   children: React.ReactNode;
 };
 
-const PrivateRoutes = ({ children }: Props) => {
+const TeacherRoutes = ({ children }: Props) => {
   const data = useGetRole("data");
 
-  return data?.split(" ")[1] === "true" ? <>{children}</> : <Navigate to="/" />;
+  return data?.split(" ")[0] === "Teacher" ? <>{children}</> : <Navigate to="/" />;
 };
 
-export default PrivateRoutes;
+export default TeacherRoutes;
