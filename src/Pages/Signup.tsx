@@ -16,12 +16,9 @@ const Signup = (props: Props) => {
   const dispatch = useDispatch();
   const selector = useSelector((state: RootState) => state.student);
   const storeRole = useStoreRole;
-  const navigate = useNavigate()
- 
-
+  const navigate = useNavigate();
 
   return (
-  
     <div className="flex items-center justify-center h-screen border-2 ">
       <div className="w-full max-w-md text-xl font-medium text-black border-2 border-blue-400 p-10 rounded-lg">
         <h1>Sign Up</h1>
@@ -45,8 +42,7 @@ const Signup = (props: Props) => {
               teacherContext?.setSignUp(true);
               console.log("Context after submission", teacherContext?.state);
               storeRole("data", values.role + " " + "true");
-              navigate('/teacherdata')
-             
+              navigate("/teacherdata");
             } else {
               const newStudent = {
                 firstName: values.firstName,
@@ -58,7 +54,7 @@ const Signup = (props: Props) => {
               dispatch(setStudent(newStudent));
               console.log(selector);
               storeRole("data", values.role + " " + "true");
-               navigate("/studentdata");
+              navigate("/studentdata");
             }
           }}
         >

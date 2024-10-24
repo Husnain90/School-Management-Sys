@@ -1,12 +1,15 @@
 import React from 'react'
 import { useContext } from 'react'
 import { TeacherContext } from '../context/Teacher'
+import { useNavigate } from 'react-router-dom'
+import usePreventBackNavigation from '../customHooks/preventBackNavigation'
 
 type Props = {}
 
 const TeacherData = (props: Props) => {
   const teacherContext = useContext(TeacherContext)
-  
+   console.log(window.location.href); 
+  //  usePreventBackNavigation()
   return (
     <div className="flex items-center justify-center h-screen flex-col">
       <div>

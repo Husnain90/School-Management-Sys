@@ -8,7 +8,6 @@ type Props = {
 
 const StudentRoutes = ({ children }: Props) => {
   const data = useGetRole("data");
-
   return data?.split(" ")[0] === "Student" ? <>{children}</> : <Navigate to="/" />;
 };
 
